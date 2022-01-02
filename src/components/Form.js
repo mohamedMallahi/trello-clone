@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Form = ({ submitHandler, changeHandler }) => {
+const Form = ({ submitHandler, changeHandler, text }) => {
   return (
     <form className="w-100" onSubmit={submitHandler}>
       <input

@@ -1,123 +1,64 @@
 import React, { useState } from 'react';
+import List from './components/List';
 import './style.css';
 
 export default function App() {
-  const [items, setItems] = useState([]);
-  const [text, setText] = useState('');
-
-  const handleChange = (e) => {
-    setText(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (text.length === 0) {
-      return;
-    }
-    const newItem = {
-      text: text,
-      id: Date.now(),
-    };
-    setItems((prevItems) => prevItems.concat(newItem));
-    setText('');
-  };
+  const [data, setData] = useState({
+    one: [],
+    two: [],
+    three: [],
+  });
 
   return (
-    <div className="container py-3">
-      <h3 className="display-4 text-center">TODO</h3>
-      <div className="row">
-        <div className="col-md-4 p-0">
-          <TodoList items={items} />
-          <form className="w-100" onSubmit={handleSubmit}>
-            <div className="row w-100 m-0">
-              <div className="col-sm-10 p-0">
-                <input
-                  type="text"
-                  className="form-control"
-                  style={{ borderRadius: '0px' }}
-                  id="new-todo"
-                  onChange={handleChange}
-                  value={text}
-                  placeholder="What needs to be done?"
-                />
-              </div>
-              <div className="col-sm-2 p-0">
-                <button
-                  className="btn btn-primary d-block w-100"
-                  style={{ borderRadius: '0px' }}
-                >
-                  Add #{items.length + 1}
-                </button>
-              </div>
-            </div>
-          </form>
+    <>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="#">
+            Trello
+          </a>
+          <ul className="navbar-nav me-auto mx-2 mb-2 mb-lg-0">
+            <li className="nav-item">
+              <a className="nav-link text-light" href="#">
+                Workspace
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link text-light" href="#">
+                Recent
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link text-light" href="#">
+                Starred
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link text-light" href="#">
+                More
+              </a>
+            </li>
+            <li>
+              <button className="btn btn-warning">+</button>
+            </li>
+          </ul>
+          <div>
+          <input type="text" class="form-control" placeholder="Search"/>
+          </div>
         </div>
-        <div className="col-md-4 p-0">
-          <TodoList items={items} />
-          <form className="w-100" onSubmit={handleSubmit}>
-            <div className="row w-100 m-0">
-              <div className="col-sm-10 p-0">
-                <input
-                  type="text"
-                  className="form-control"
-                  style={{ borderRadius: '0px' }}
-                  id="new-todo"
-                  onChange={handleChange}
-                  value={text}
-                  placeholder="What needs to be done?"
-                />
-              </div>
-              <div className="col-sm-2 p-0">
-                <button
-                  className="btn btn-primary d-block w-100"
-                  style={{ borderRadius: '0px' }}
-                >
-                  Add #{items.length + 1}
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div className="col-md-4 p-0">
-          <TodoList items={items} />
-          <form className="w-100" onSubmit={handleSubmit}>
-            <div className="row w-100 m-0">
-              <div className="col-sm-10 p-0">
-                <input
-                  type="text"
-                  className="form-control"
-                  style={{ borderRadius: '0px' }}
-                  id="new-todo"
-                  onChange={handleChange}
-                  value={text}
-                  placeholder="What needs to be done?"
-                />
-              </div>
-              <div className="col-sm-2 p-0">
-                <button
-                  className="btn btn-primary d-block w-100"
-                  style={{ borderRadius: '0px' }}
-                >
-                  Add #{items.length + 1}
-                </button>
-              </div>
-            </div>
-          </form>
+      </nav>
+      <div className="container py-3">
+        <div className="row">
+          <div className="col-md-3 p-0">
+            <List list={data.one} />
+          </div>
+          <div className="col-md-3 p-0 mx-2">
+            <List list={data.two} />
+          </div>
+          <div className="col-md-3 p-0">
+            <List list={data.three} />
+          </div>
         </div>
       </div>
-      
-    </div>
+    </>
   );
 }
-
-const TodoList = ({ items }) => {
-  return (
-    <ul className="list-group">
-      {items.map((item) => (
-        <li className="list-group-item" key={item.id}>
-          {item.text}
-        </li>
-      ))}
-    </ul>
-  );
-};

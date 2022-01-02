@@ -1,7 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Form from './Form'
 
-const List = ({ items }) => {
+const List = ({ list }) => {
+  const [items, setItems] = useState(list)
+  const [text, setText] = useState('');
+
+  const changeHandler = (e) => {
+    setText(e.target.value);
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    console.log(items)
+    if (text.length === 0) {
+      return;
+    }
+    const newItem = {
+      text: text,
+      id: Date.now(),
+    };
+    setItems((prevItems) => prevItems.concat(newItem));
+    setText('');
+  };
+
   return (
     <div>
       <ul className="list-group">
@@ -11,7 +32,7 @@ const List = ({ items }) => {
           </li>
         ))}
       </ul>
-      <Form submitHandler={} changeHandler={} />
+      <Form submitHandler={submitHandler} changeHandler={changeHandler} text={text} />
     </div>
   );
 };
