@@ -14,7 +14,7 @@ export default function App() {
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
-            Trello
+            <h4 className="m-0">Trello</h4>
           </a>
           <ul className="navbar-nav me-auto mx-2 mb-2 mb-lg-0">
             <li className="nav-item">
