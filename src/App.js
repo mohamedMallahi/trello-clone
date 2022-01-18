@@ -17,6 +17,7 @@ export default function App() {
             <h4 className="m-0">Trello</h4>
           </a>
           <ul className="navbar-nav me-auto mx-2 mb-2 mb-lg-0">
+            <li></li>
             <li className="nav-item">
               <a className="nav-link text-light" href="#">
                 Workspace
